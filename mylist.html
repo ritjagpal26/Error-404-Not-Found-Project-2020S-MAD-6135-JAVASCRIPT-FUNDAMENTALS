@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta name="viewport" content="width=device-width, intial-scale=1.0">
+    <link rel="stylesheet" href="HomeStyle.css">
+    <link rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.14.0/css/mdb.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="models.js"></script>
+    <script src="script.js" charset="utf-8"></script>
+    <title>My Bookings</title>
+    <style >
+    .request_table tr>td {
+      padding: 1em;
+      text-align: center;
+    }
+
+    </style>
+  </head>
+  <body>
+    <div class="header">
+    <a href="index.html" class="logo">Jagpal Travel Agency</a>
+    <div class="header-right">
+      <a  href="index.html">Home</a>
+      <a class="active" href="mylist.html" id="mylist">My Bookings</a>
+      <a href="Services.html">Services</a>
+      <a href="contact-us.html">Contact</a>
+      <a href="About-us.html">About</a>
+      <a href="login-signup.html" id="login_b">Login</a>
+      <a href="login-signup.html" id="logout_b" onclick="performLogout()">Logout</a>
+    </div>
+  </div>
+  <div class="container p-4">
+    <div class="row pt-4">
+      <div class="col-12 ">
+
+
+  <div id="accordion">
+  <div class="card" >
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Hotel Bookings
+        </button>
+      </h5>
+    </div>
+
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body">
+      <table class="table table-responsive table-striped request_table" id="hotelRequest">
+        <tr>
+          <th class="m-1 p-2"> Request Id</th>
+          <th class="m-1 p-2">Hotel Name</th>
+        <th class="m-1 p-2">Number oF rooms</th>
+        <th class="m-1 p-2">Adults</th>
+        <th class="m-1 p-2">Children</th>
+        <th class="m-1 p-2">Check In Date</th>
+        <th class="m-1 p-2">Check Out Date</th>
+
+
+        </tr>
+
+      </table>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Check Your Flight
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+<div class="card text-center">
+      <div class="card-body  " >
+        <table class="table table-responsive table-striped flight_table" id="flightRequest">
+          <tr>
+
+            <th class="m-1 p-2"> Request Id</th>
+            <th class="m-1 p-2">Flight Name</th>
+            <th class="m-1 p-2">From</th>
+            <th class="m-1 p-2">Destination</th>
+            <th class="m-1 p-2">Date of Travel</th>
+            <th class="m-1 p-2">Fare</th>
+            <th class="m-1 p-2">Departur Time</th>
+            <th class="m-1 p-2">Arrival Time</th>
+            <th class="m-1 p-2">Adults</th>
+            <th class="m-1 p-2">Children</th>
+            <th class="m-1 p-2">Travel Class</th>
+
+
+          </tr>
+
+        </table>
+            </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+</div>
+
+</div>
+<!-- Footer -->
+<footer class="page-footer font-small cyan darken-3">
+
+  <!-- Footer Elements -->
+  <div class="container">
+
+<!-- Grid row-->
+<div class="row">
+
+  <!-- Grid column -->
+  <div class="col-md-12 py-5">
+    <div class="mb-5 flex-center">
+
+
+      <a class="fb-ic" href="https://www.facebook.com/ritjagpal">
+        <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+      </a>
+
+      <a class="tw-ic" href="https://twitter.com/princejagpal17">
+        <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+      </a>
+
+      <a class="gplus-ic" href="https://www.instagram.com/ritjagpal/">
+        <i class="fab fa-google-plus-g fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+      </a>
+
+      <a class="li-ic" href="https://www.linkedin.com/in/ritikjagpal/">
+        <i class="fab fa-linkedin-in fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+      </a>
+
+      <a class="ins-ic">
+        <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+      </a>
+
+      <a class="pin-ic" href="https://ritjagpal26.wordpress.com/">
+        <i class="fab fa-wordpress fa-lg white-text fa-2x"> </i>
+      </a>
+    </div>
+  </div>
+
+
+</div>
+  </div>
+
+  <div class="footer-copyright text-center py-3">© 2020 Copyright:
+<a href="index.html"> jagpaltravels.com</a>    </div>
+
+</footer>
+
+  </body>
+
+
+
+  <script type="text/javascript">
+
+  function performLogout() {
+    localStorage.removeItem("currentuser");
+    window.href = "login-signup.html";
+      alert(" Logout ");
+  }
+    var userId = localStorage.getItem("currentuser");
+    $(document).ready(function() {
+
+      getHotelRequests(userId).then(response=> {
+        bindHotelRequestToTable(response);
+      });
+
+      getFlightRequests(userId).then(response=> {
+        bindFlightRequestToTable(response);
+      });
+    });
+
+
+
+    function bindHotelRequestToTable(hotelRequests) {
+      console.log(hotelRequests);
+      var hotelTable = document.getElementById("hotelRequest");
+      hotelRequests.forEach((hotelRequest, i) => {
+        let index = i+1;
+        let row = hotelTable.insertRow(index);
+
+
+        row.innerHTML = `<td>${index}</td><td>${hotelRequest.name}</td><td>${hotelRequest.room}</td><td>${hotelRequest.adults}</td><td>${hotelRequest.children}</td><td>${hotelRequest.checkIn}</td><td>${hotelRequest.checkOut}</td>`;
+
+
+      });
+
+    }
+    function bindFlightRequestToTable(flightRequests) {
+      console.log(flightRequests);
+      var flightTable = document.getElementById("flightRequest");
+      flightRequests.forEach((flightRequest, i) => {
+        let index = i+1;
+        let row = flightTable.insertRow(index);
+        getFlightDetails(flightRequest.flight).then(response=> {
+
+          let fn = response.flightname;
+          let ff =response.flyingFrom ;
+        let ft  =response.flyingTo ;
+            let fp   =response.fare  ;
+          let fdt  =response.departuretime;
+        let fat  =response.arrivaltime ;
+
+
+
+        let ftype = flightRequest.type;
+        let fdate = flightRequest.departing;
+        let freturndate = flightRequest.returning;
+        let fadult = flightRequest.adults;
+        let fchild = flightRequest.children;
+        let ftc = flightRequest.travelClass;
+
+        row.innerHTML = `<td>${index}</td><td>${fn}</td><td>${ff}</td><td>${ft}</td><td>${fdate}</td><td>${fp}</td><td>${fdt}</td><td>${fat}</td><td>${fadult}</td><td>${fchild}</td><td>${ftc}</td>`;
+
+
+        });
+
+
+
+      });
+
+    }
+  </script>
+
+</html>

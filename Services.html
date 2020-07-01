@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+  <meta name="viewport" content="width=device-width, intial-scale=1.0">
+    <link rel="stylesheet" href="HomeStyle.css">
+    <link rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.14.0/css/mdb.min.css" rel="stylesheet">
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="Models.js">
+
+    </script>
+    <title>Services</title>
+    <script src="script.js" charset="utf-8"></script>
+    <script type="text/javascript">
+    function performLogout() {
+      localStorage.removeItem("currentuser");
+      window.href = "login-signup.html";
+        alert(" Logout ");
+    }
+    function bookHotel(){
+
+    const userId = localStorage.getItem("currentuser");
+
+    let hotel_name = document.getElementById('hotel_name').value;
+    let adults = document.getElementById('adults').value;
+    let checkIn = document.getElementById('checkIn').value;
+    let checkOut = document.getElementById('checkOut').value;
+    let children = document.getElementById('children').value;
+    let room = document.getElementById('room').value;
+
+    var hotelbooking = new HotelBooking(hotel_name,room,adults,children,checkIn,checkOut,userId);
+    console.log(hotelbooking);
+    addHotelRequestToDB(hotelbooking);
+    alert(" Hotel booking is done Find Your Booking in  My Bookings page Now ");
+
+    }
+
+
+function getFlights(){
+  let flyingto = document.getElementById('flyingto').value;
+  let flyingFrom = document.getElementById('flyingfrom').value;
+
+  showFlihts(flyingFrom,flyingto).then((response)=>{
+      console.log(response);
+bindFlightOptionsToTable(response);
+  });
+
+
+}
+function bindFlightOptionsToTable(flightRequest) {
+  console.log(flightRequest);
+  var flightTable = document.getElementById("flightRequest");
+  flightRequest.forEach((flightRequest, i) => {
+    let index = i+1;
+    let row = flightTable.insertRow(index);
+
+
+    row.innerHTML = `<td>${index}</td><td>${flightRequest.flightname}</td><td>${flightRequest.flyingFrom}</td><td>${flightRequest.flyingTo}</td><td>${flightRequest.fare}</td><td>${flightRequest.departuretime}</td><td>${flightRequest.arrivaltime}</td><td><input type=button class="btn btn-primary" onclick="addFlightRequest(this.id)" value=select id=${flightRequest.id} /></td>`;
+
+
+
+  });
+
+}
+
+function addFlightRequest(id) {
+  let Departing = document.getElementById('Departing').value;
+  let returning = document.getElementById('returning').value;
+  let flightadults = document.getElementById('flightadults').value;
+  let childflight = document.getElementById('childflight').value;
+  let travelclass = document.getElementById('travelclass').value;
+  let type = document.getElementById('roundtrip').checked ? "roundtrip":"one-way";
+  var flightRequest = new FlightBooking(type,id,Departing,returning,flightadults, childflight,travelclass,localStorage.getItem("currentuser"));
+  addFlightRequestToDB(flightRequest);
+          alert("Flight Requested");
+          document.getElementById(id).value = "Booked";
+          document.getElementById(id).enabled = false;
+
+
+
+
+}
+
+    </script>
+
+
+    <title></title>
+    <style>
+
+.roberto-about-area{
+  background:#efefef;
+  margin:30px;
+
+}
+.hotel{
+  padding: 30px;
+}
+
+
+
+#booking {
+  font-family: 'PT Sans', sans-serif;
+  /* background-image: url('../img/background.jpg'); */
+  background-size: cover;
+  background-position: center;
+}
+
+.booking-form {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 40px;
+  border-radius: 6px;
+}
+
+.booking-form .form-group {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.booking-form .form-control {
+  background-color: #fff;
+  height: 50px;
+  color: #191a1e;
+  border: none;
+  font-size: 16px;
+  font-weight: 400;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-radius: 40px;
+  padding: 0px 0px;
+}
+
+.booking-form .form-control::-webkit-input-placeholder {
+  color: rgba(82, 82, 84, 0.4);
+}
+
+.booking-form .form-control:-ms-input-placeholder {
+  color: rgba(82, 82, 84, 0.4);
+}
+
+.booking-form .form-control::placeholder {
+  color: rgba(82, 82, 84, 0.4);
+}
+
+.booking-form input[type="date"].form-control:invalid {
+  color: rgba(82, 82, 84, 0.4);
+}
+
+.booking-form select.form-control {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.booking-form select.form-control+.select-arrow {
+  position: absolute;
+  right: 10px;
+  bottom: 6px;
+  width: 32px;
+  line-height: 32px;
+  height: 32px;
+  text-align: center;
+  pointer-events: none;
+  color: rgba(0, 0, 0, 0.3);
+  font-size: 14px;
+}
+
+.booking-form select.form-control+.select-arrow:after {
+  content: '\279C';
+  display: block;
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+.booking-form .form-label {
+  display: block;
+  margin-left: 20px;
+  margin-bottom: 5px;
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 24px;
+  height: 24px;
+  font-size: 12px;
+  color: #fff;
+}
+
+.booking-form .form-checkbox input {
+  position: absolute !important;
+  margin-left: -9999px !important;
+  visibility: hidden !important;
+}
+
+.booking-form .form-checkbox label {
+  position: relative;
+  padding-top: 4px;
+  padding-left: 30px;
+  font-weight: 400;
+  color: #fff;
+}
+
+.booking-form .form-checkbox label+label {
+  margin-left: 15px;
+}
+
+.booking-form .form-checkbox input+span {
+  position: absolute;
+  left: 2px;
+  top: 4px;
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  border-radius: 50%;
+}
+
+.booking-form .form-checkbox input+span:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0px;
+  height: 0px;
+  border-radius: 50%;
+  background-color: #f23e3e;
+  -webkit-transition: 0.2s all;
+  transition: 0.2s all;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.booking-form .form-checkbox input:not(:checked)+span:after {
+  opacity: 0;
+}
+
+.booking-form .form-checkbox input:checked+span:after {
+  opacity: 1;
+  width: 10px;
+  height: 10px;
+}
+
+.booking-form .form-btn {
+  margin-top: 27px;
+}
+
+.booking-form .submit-btn {
+  color: #fff;
+  background-color: #f23e3e;
+  font-weight: 400;
+  height: 50px;
+  font-size: 14px;
+  border: none;
+  width: 100%;
+  border-radius: 40px;
+  text-transform: uppercase;
+  -webkit-transition: 0.2s all;
+  transition: 0.2s all;
+}
+
+.booking-form .submit-btn:hover,
+.booking-form .submit-btn:focus {
+  opacity: 0.9;
+}
+#footer{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem;
+}
+
+    </style>
+  </head>
+  <body>
+    <div class="header">
+    <a href="index.html" class="logo">Jagpal Travel Agency</a>
+    <div class="header-right">
+      <a  href="index.html">Home</a>
+      <a href="mylist.html" id="mylist">My Bookings</a>
+      <a class="active" href="Services.html">Services</a>
+      <a href="contact-us.html">Contact</a>
+        <a href="About-us.html">About</a>
+      <a href="login-signup.html" id="login_b">Login</a>
+      <a href="login-signup.html" id="logout_b" onclick="performLogout()">Logout</a>
+
+
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+
+
+
+   <section class="roberto-about-area section-padding-100-0 pb-5">
+        <!-- Hotel Search Form Area -->
+        <div class="hotel-search-form-area">
+            <div class="container-fluid">
+              <h2  class="hotel"align="center"  >Book Your Hotel Here</h2>
+                <div class="hotel-search-form">
+                    <form action="#" method="post">
+                        <div class="row justify-content-between align-items-end">
+                          <div class="col-4 col-md-1 col-lg-3">
+                              <label for="hotels">Hotels</label>
+                              <select name="hotel_name" id="hotel_name" class="form-control">
+                                  <option value="Best Western">Select Hotel </option>
+                                  <option value="Best Western">Best Western </option>
+                                  <option value="Ramada">Ramada</option>
+                                  <option value="Hotel King">Hotel King</option>
+                                  <option value="Toronto Heights">Toronto Heights</option>
+                                  <option value="best of us">best of us</option>
+                                  <option value="Travel With us">Travel With us</option>
+                              </select>
+                          </div>
+                            <div class="col-6 col-md-2 col-lg-3">
+                                <label for="checkIn">Check In</label>
+                                <input type="date" class="form-control" id="checkIn" name="checkin-date">
+                            </div>
+                            <div class="col-6 col-md-2 col-lg-3">
+                                <label for="checkOut">Check Out</label>
+                                <input type="date" class="form-control" id="checkOut" name="checkout-date">
+                            </div>
+                            <div class="col-4 col-md-1">
+                                <label for="room">Room</label>
+                                <select name="room" id="room" class="form-control">
+                                    <option value="01">01</option>
+                                    <option value="02">02</option>
+                                    <option value="03">03</option>
+                                    <option value="04">04</option>
+                                    <option value="05">05</option>
+                                    <option value="06">06</option>
+                                </select>
+                            </div>
+                            <div class="col-4 col-md-1">
+                                <label for="adults">Adult</label>
+                                <select name="adults" id="adults" class="form-control">
+                                    <option value="01">01</option>
+                                    <option value="02">02</option>
+                                    <option value="03">03</option>
+                                    <option value="04">04</option>
+                                    <option value="05">05</option>
+                                    <option value="06">06</option>
+                                </select>
+                            </div>
+                            <div class="col-4 col-md-2 col-lg-1">
+                                <label for="children">Children</label>
+                                <select name="children" id="children" class="form-control">
+                                    <option value="01">01</option>
+                                    <option value="02">02</option>
+                                    <option value="03">03</option>
+                                    <option value="04">04</option>
+                                    <option value="05">05</option>
+                                    <option value="06">06</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-md-3">
+                                <button type="button" onclick="bookHotel()"class="btn btn-primary btn-lg">Book Your Hotel</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+      </section>
+
+  </div>
+</div>
+<div class="row justify-content-center">
+<div class="col-sm-12">
+
+
+
+      <div id="booking" >
+
+
+  <h2 class="flight" align="center">Book Your flights</h2>
+
+<div class="booking-form">
+<form>
+<div class="form-group">
+<div class="form-checkbox">
+<label for="roundtrip">
+<input type="radio" id="roundtrip" name="flight-type" checked>
+<span></span>Roundtrip
+</label>
+<label for="one-way">
+<input type="radio" id="one-way" name="flight-type">
+<span></span>One way
+</label>
+
+</div>
+</div>
+<div class="row">
+<div class="col-md-6">
+<div class="form-group">
+<span class="form-label">Flying from</span>
+<input class="form-control" type="text" id="flyingfrom" placeholder="City or airport">
+</div>
+</div>
+<div class="col-md-6">
+<div class="form-group">
+<span class="form-label">Flyning to</span>
+<input class="form-control" id="flyingto" type="text" placeholder="City or airport">
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-3">
+<div class="form-group">
+<span class="form-label">Departing</span>
+<input class="form-control" id="Departing"type="date" required="">
+</div>
+</div>
+<div class="col-md-3">
+<div class="form-group">
+<span class="form-label">Returning</span>
+<input class="form-control" id="returning" type="date" required="">
+</div>
+</div>
+<div class="col-md-2">
+<div class="form-group">
+<span class="form-label">Adults (18+)</span>
+<select class="form-control" id="flightadults">
+<optionf>1</option>
+<option>2</option>
+<option>3</option>
+</select>
+<span class="select-arrow"></span>
+</div>
+</div>
+<div class="col-md-2">
+<div class="form-group">
+<span class="form-label">Children (0-17)</span>
+<select class="form-control" id="childflight">
+<option>0</option>
+<option>1</option>
+<option>2</option>
+</select>
+<span class="select-arrow"></span>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-3">
+<div class="form-group">
+<span class="form-label">Travel class</span>
+<select id="travelclass" class="form-control">
+<option>Economy class</option>
+<option>Business class</option>
+<option>First class</option>
+</select>
+<span class="select-arrow"></span>
+</div>
+</div>
+<div class="col-md-3">
+<div class="form-btn">
+<input  type="button" class="btn btn-info" onclick="getFlights()" value="Show Flights" />
+</div>
+</div>
+</div>
+</form>
+</div>
+
+<div class="row p-4">
+  <div class="col-sm-12 ">
+
+
+   <table class="table table-responsive table-striped table-dark" id="flightRequest" >
+     <tr>
+       <th class="m-1 p-2"> Request Id</th>
+       <th class="m-1 p-2">Flight Name</th>
+     <th class="m-1 p-2">From</th>
+     <th class="m-1 p-2">Destination</th>
+     <th class="m-1 p-2">Fare</th>
+     <th class="m-1 p-2">Departur Time</th>
+     <th class="m-1 p-2">Arrival Time</th>
+     <th class="m-1 p-2">Select</th>
+
+
+
+
+     </tr>
+
+   </table>
+   </div>
+     </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+
+
+
+  <!-- Footer -->
+  <footer class="page-footer font-small cyan darken-3">
+
+    <!-- Footer Elements -->
+    <div class="container">
+
+  <!-- Grid row-->
+  <div class="row">
+
+    <!-- Grid column -->
+    <div class="col-md-12 py-5">
+      <div class="mb-5 flex-center">
+
+
+        <a class="fb-ic" href="https://www.facebook.com/ritjagpal">
+          <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+        </a>
+
+        <a class="tw-ic" href="https://twitter.com/princejagpal17">
+          <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+        </a>
+
+        <a class="gplus-ic" href="https://www.instagram.com/ritjagpal/">
+          <i class="fab fa-google-plus-g fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+        </a>
+
+        <a class="li-ic" href="https://www.linkedin.com/in/ritikjagpal/">
+          <i class="fab fa-linkedin-in fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+        </a>
+
+        <a class="ins-ic">
+          <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+        </a>
+
+        <a class="pin-ic" href="https://ritjagpal26.wordpress.com/">
+          <i class="fab fa-wordpress fa-lg white-text fa-2x"> </i>
+        </a>
+      </div>
+    </div>
+
+
+  </div>
+    </div>
+
+    <div class="footer-copyright text-center py-3">© 2020 Copyright:
+<a href="index.html"> jagpaltravels.com</a>    </div>
+
+  </footer>
+</div>
+
+</div>
+  </div>
+
+
+  </body>
+</html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta name="viewport" content="width=device-width, intial-scale=1.0">
+    <link rel="stylesheet" href="HomeStyle.css">
+    <link rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.14.0/css/mdb.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="Models.js">
+
+    </script>
+    <title>Login Or Sign Up</title>
+  </head>
+  <body>
+    <div class="header">
+    <a href="index.html" class="logo">Jagpal Travel Agency</a>
+    <div class="header-right">
+      <a  href="index.html">Home</a>
+      <a href="mylist.html" id="mylist">My Bookings</a>
+      <a href="Services.html">Services</a>
+      <a href="contact-us.html">Contact</a>
+      <a href="About-us.html">About</a>
+      <a href="login-signup.html" id="login_b">Login</a>
+      <a href="login-signup.html" id="logout_b" onclick="performLogout()">Logout</a>
+
+    </div>
+  </div>
+  <!-- hwjfqwhejhqkhed -->
+
+
+  <div class="container-fluid pt-4">
+  		<div class="container">
+  			<h2 class="text-center" id="title">Jagpal Travel agency</h2>
+
+   			<hr>
+  			<div class="row">
+  				<div class="col-md-5">
+   					<form role="form" method="post" >
+  						<fieldset>
+  							<p class="text-uppercase pull-center"> SIGN UP.</p>
+                <div class="form-group">
+  								<input type="text" name="fname" id="fname" class="form-control input-lg" placeholder="First Name">
+  							</div>
+                <div class="form-group">
+  								<input type="text" name="lname" id="lanme" class="form-control input-lg" placeholder="Last Name">
+  							</div>
+   							<div class="form-group">
+  								<input type="text" name="username" id="username" class="form-control input-lg" placeholder="username">
+  							</div>
+
+  							<div class="form-group">
+  								<input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address">
+  							</div>
+  							<div class="form-group">
+  								<input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password">
+  							</div>
+  								<div class="form-group">
+  								<input type="password" name="password2" id="password2" class="form-control input-lg" placeholder="Password2">
+  							</div>
+  							<div class="form-check">
+  								<label class="form-check-label">
+  								  <input type="checkbox" class="form-check-input">
+  								  By Clicking register you're agree to our policy & terms
+  								</label>
+  							  </div>
+   							<div class="pb-4">
+<input type="submit" class="btn btn-md " value="Sign up"  onClick="store()">
+
+   									  <!-- <input type="submit" class="btn btn-lg btn-primary" onClick="store()">
+   							</div> -->
+  						</fieldset>
+  					</form>
+
+  				</div>
+
+  				<div class="col-md-2">
+
+  					<!-------null------>
+  				</div>
+
+  				<div class="col-md-5">
+   				 		<form role="form">
+  						<fieldset>
+  							<p class="text-uppercase"> Login using your account: </p>
+
+  							<div class="form-group">
+  								<input type="text" name="username" id="username-login" class="form-control input-lg" placeholder="username">
+  							</div>
+  							<div class="form-group">
+  								<input type="password" name="password" id="password-login" class="form-control input-lg" placeholder="Password">
+  							</div>
+  							<div>
+  								<input  type="button" class="btn btn-md" value="Sign In"  onClick="login()">
+  							</div>
+
+   						</fieldset>
+  				</form>
+  				</div>
+  			</div>
+  		</div>
+
+  	</div>
+
+
+
+
+
+
+
+    <!-- Footer -->
+    <footer class="page-footer font-small cyan darken-3">
+
+      <!-- Footer Elements -->
+      <div class="container">
+
+    <!-- Grid row-->
+    <div class="row">
+
+      <!-- Grid column -->
+      <div class="col-md-12 py-5">
+        <div class="mb-5 flex-center">
+
+
+          <a class="fb-ic" href="https://www.facebook.com/ritjagpal">
+            <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+          </a>
+
+          <a class="tw-ic" href="https://twitter.com/princejagpal17">
+            <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+          </a>
+
+          <a class="gplus-ic" href="https://www.instagram.com/ritjagpal/">
+            <i class="fab fa-google-plus-g fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+          </a>
+
+          <a class="li-ic" href="https://www.linkedin.com/in/ritikjagpal/">
+            <i class="fab fa-linkedin-in fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+          </a>
+
+          <a class="ins-ic">
+            <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+          </a>
+
+          <a class="pin-ic" href="https://ritjagpal26.wordpress.com/">
+            <i class="fab fa-wordpress fa-lg white-text fa-2x"> </i>
+          </a>
+        </div>
+      </div>
+
+
+    </div>
+      </div>
+
+      <div class="footer-copyright text-center py-3">© 2020 Copyright:
+  <a href="index.html"> jagpaltravels.com</a>    </div>
+
+    </footer>
+  </body>
+</html>
+<script type="text/javascript">
+
+  function performLogout() {
+    localStorage.removeItem("currentuser");
+    window.href = "login-signup.html";
+    alert(" Logout ");
+  }
+
+
+
+
+
+    // storing input from register-form
+    function store() {
+      let fname = document.getElementById('fname').value;
+      let lname = document.getElementById('lanme').value;
+      let password = document.getElementById('password').value;
+      let password2 = document.getElementById('password2').value;
+
+    let  username = document.getElementById('username').value;
+
+    let  email = document.getElementById('email').value;
+    if(fname == ""|| lname==""||password == "" || password2 == ""|| username =="" || email == ""){
+      alert(" All Fileds are mandatory");
+    }
+else{
+
+      var user = new User(fname,lname,password,email,username);
+      addUserToDB(user);
+      alert("Sign Up successfully. Now please Login with Username and password to Book Flights");
+}
+    }
+    function login(){
+      let  username = document.getElementById('username-login').value;
+
+      let password = document.getElementById('password-login').value;
+      checkLogin(username,password).then((response)=>{
+          console.log(response);
+
+          if(response) {
+            processLogin(username);
+            alert("Login successful. Now You can Book Your  Flights.");
+
+          }
+          else {
+            // Login not successful TODO
+            alert("Please Enter Valid Username and Password");
+
+          }
+
+      });
+
+    //   for(let i=0;i<username.length;i++){
+    //     var storedName = [];
+    //     var storedPw = [];
+    //     storedName[i]=localStorage.getItem('username[i]');
+    //     storedPw[i]=localStorage.getItem('password[i]');
+    //     if(username-login.value == storedName[i] && passowrd-login.value == storedPw[i]) {
+    //         alert('You are loged in.');
+    //     }else {
+    //         alert('ERROR.');
+    //     }
+    // }
+    }
+
+
+
+    function processLogin(username) {
+      var btn_logn = document.getElementById('login_b');
+      btn_logn.style.display = "none";
+
+      getUserId(username).then((response) => {
+        if(response!= "not found") {
+          localStorage.setItem("currentuser",response);
+          window.location = "index.html";
+
+        }
+        else {
+
+        }
+      });
+    }
+
+</script>
+<script type="text/javascript" src="script.js">
+
+</script>
